@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
 });
 
 // Connect to the database
-mongoose.connect('mongodb://localhost:27017/ShopSmart', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://munishgoel45698:9r3jwSuO1CzegsfD@cluster0.9r9br1c.mongodb.net/ShopSmart', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("connected to db"))
   .catch(err => console.log("Error connecting to db: ", err));
 
