@@ -110,7 +110,7 @@ app.delete('/deleteProduct/:id', (req, res) => {
       res.status(500).json({ error: "Deleting product failed" });
     });
 });
-// get user
+// get product
 app.get('/getProduct' ,(req,res)=>{
   ProductModel.find({}).sort('-date') 
 
@@ -118,7 +118,13 @@ app.get('/getProduct' ,(req,res)=>{
   .catch(err=>res.json(err))
 
 })
+app.get('/getUsers' ,(req,res)=>{
+  SignupModel.find({}).sort('-date') 
 
+  .then(product => res.json(product))
+  .catch(err=>res.json(err))
+
+})
 app.get('/product/:id', (req, res) => {
   const { id } = req.params;
 
