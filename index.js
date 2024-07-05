@@ -80,6 +80,34 @@ app.post('/addProduct', (req, res) => {
       console.log("Error during adding the product: ", err);
     });
 });
+//update by user
+app.put('/updateUser/:id', (req, res) => {
+  const userId = req.params.userId;
+  const updatedUserData = req.body; 
+  
+  SignupModel.findByIdAndUpdate(userId, updatedUserData, { new: true })
+    .then(updatedUser => {
+      res.json(updatedUser);
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
+});
+// delete by user
+app.delete('/deleteUser/:id', (req, res) => {
+  const userId = req.params.userId;
+  
+  SignupModel.findByIdAndDelete(userId)
+    .then(deletedUser => {
+      if (!deletedUser) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      res.json({ message: 'User deleted successfully' });
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
+});
 // Update product by ID
 app.put('/updateProduct/:id', (req, res) => {
   const { id } = req.params;
